@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "6a9d50f8-87db-46a0-8807-95bc14a9755b",
+		"name": "Kubilabs - Ema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "479391"
+	},
+	"item": [
+		{
+			"name": "Sales Commission",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"salaryBase\":2700,\n    \"daysWorked\": 30,\n    \"sales\": 3500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/salesCommission",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"salesCommission"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
