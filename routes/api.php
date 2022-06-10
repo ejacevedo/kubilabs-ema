@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['basicAuth'])->group(function () {
-    Route::post('/salesCommission', [SalaryController::class, 'salesCommission']);
+    Route::post('salaries/salesCommission', [SalaryController::class, 'salesCommission']);
 });

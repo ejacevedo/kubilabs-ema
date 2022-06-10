@@ -19,7 +19,7 @@ class SalesCommissions
      */
     public $salaryWithCommission;
 
-    public function __construct(float $salaryBase, float $sales, float $daysWorked)
+    public function __construct(float $salaryBase, int $sales, float $daysWorked)
     {
         $percentage = $this->percentageForSales($sales, $daysWorked);
         $amountCommission = $this->getAmountCommission($percentage, $salaryBase);
@@ -29,7 +29,15 @@ class SalesCommissions
         $this->setSalaryWithCommission($amountCommission, $salaryBase);
     }
 
-    public function percentageForSales(float $sales, int $daysWorked)
+    /**
+     * Get percentage by sales range.
+     *
+     * @param  int  sales
+     * @param  int  daysWorked
+     *
+     * @return float
+     */
+    public function percentageForSales(int $sales, int $daysWorked)
     {
         return match (true) {
             $sales > 5000 => $this->percentageDayWorked($daysWorked, 10),
@@ -38,6 +46,14 @@ class SalesCommissions
         };
     }
 
+    /**
+     * Obtain percentage of profit per days worked.
+     *
+     * @param  int  daysWorked
+     * @param  float  percentage
+     *
+     * @return float
+     */
     public function percentageDayWorked(int $daysWorked, float $percentage)
     {
         $numberDays = 30;
@@ -49,11 +65,24 @@ class SalesCommissions
     }
 
     /**
+     * Get commission amount.
+     *
+     * @param  float  percentage
+     * @param  float  salaryBase
+     *
+     * @return float
+     */
+    public function getAmountCommission(float $percentage, float $salaryBase)
+    {
+        return ($percentage * $salaryBase) / 100;
+    }
+
+    /**
      * Set the value of percentage.
      *
      * @return self
      */
-    public function setPercentage(float $percentage)
+    private function setPercentage(float $percentage)
     {
         $this->percentage = $percentage;
 
@@ -65,7 +94,7 @@ class SalesCommissions
      *
      * @return self
      */
-    public function setAmount(float $amount)
+    private function setAmount(float $amount)
     {
         $this->amount = $amount;
 
@@ -78,20 +107,10 @@ class SalesCommissions
      *
      * @return self
      */
-    public function setSalaryWithCommission(float $amountCommission, float $salaryBase)
+    private function setSalaryWithCommission(float $amountCommission, float $salaryBase)
     {
         $this->salaryWithCommission = $amountCommission + $salaryBase;
 
         return $this;
-    }
-
-    public function getAmountCommission(float $percentage, float $salaryBase)
-    {
-        return ($percentage * $salaryBase) / 100;
-    }
-
-    public function has(string $na)
-    {
-        return true;
     }
 }

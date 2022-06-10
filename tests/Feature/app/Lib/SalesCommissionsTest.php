@@ -14,7 +14,7 @@ class SalesCommissionsTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function testSalesEqualToZeroWithFifteenDaysOfWork()
+    public function testSalesCommissionEqualToZeroWithFifteenDaysOfWork()
     {
         $salaryBase = 1250;
         $daysWorked = 15;
@@ -26,7 +26,7 @@ class SalesCommissionsTest extends TestCase
         $this->assertEquals(0.5, $salesCommission->percentage);
     }
 
-    public function testSalesLessThanAThousandWithThirtyDaysOfWork()
+    public function testSalesCommissionLessThanAThousandWithThirtyDaysOfWork()
     {
         $salaryBase = 2500;
         $daysWorked = 30;
@@ -38,7 +38,7 @@ class SalesCommissionsTest extends TestCase
         $this->assertEquals(1, $salesCommission->percentage);
     }
 
-    public function testSalesEqualToThousandWithThirtyDaysOfWork()
+    public function testSalesCommissionEqualToThousandWithThirtyDaysOfWork()
     {
         $salaryBase = 3502;
         $daysWorked = 30;
@@ -50,7 +50,7 @@ class SalesCommissionsTest extends TestCase
         $this->assertEquals(1, $salesCommission->percentage);
     }
 
-    public function testSalesGreaterThanFiveThousandWithThirtyDaysOfWork()
+    public function testSalesCommissionGreaterThanFiveThousandWithThirtyDaysOfWork()
     {
         $salaryBase = 4500;
         $daysWorked = 30;
@@ -62,7 +62,7 @@ class SalesCommissionsTest extends TestCase
         $this->assertEquals(10, $salesCommission->percentage);
     }
 
-    public function testSalesGreaterThanFiveThousandWithFifteenDaysOfWork()
+    public function testSalesCommissionGreaterThanFiveThousandWithFifteenDaysOfWork()
     {
         $salaryBase = 8500;
         $daysWorked = 15;
@@ -74,7 +74,7 @@ class SalesCommissionsTest extends TestCase
         $this->assertEquals(5, $salesCommission->percentage);
     }
 
-    public function testSalesOverOneThousandWithFifteenWorkingDays()
+    public function testSalesCommissionOverOneThousandWithFifteenWorkingDays()
     {
         $salaryBase = 2350;
         $daysWorked = 15;
@@ -86,7 +86,7 @@ class SalesCommissionsTest extends TestCase
         $this->assertEquals(2.5, $salesCommission->percentage);
     }
 
-    public function testSalesOverOneThousandWithThirtyWorkingDays()
+    public function testSalesCommissionOverOneThousandWithThirtyWorkingDays()
     {
         $salaryBase = 2700;
         $daysWorked = 30;

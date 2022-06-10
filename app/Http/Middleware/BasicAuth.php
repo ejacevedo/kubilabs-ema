@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BasicAuth
 {
-    /**
+    /*
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
@@ -16,25 +16,10 @@ class BasicAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        $AUTH_USER = 'admin@admin.com';
-        $AUTH_PASS = 'Clave123+';
-        header('Cache-Control: no-cache, must-revalidate, max-age=0');
-
-        $has_supplied_credentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
-
-        // $has_supplied_credentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
-        $is_not_authenticated = (
-            !$has_supplied_credentials
-            || $_SERVER['PHP_AUTH_USER'] != $AUTH_USER
-            || $_SERVER['PHP_AUTH_PW'] != $AUTH_PASS
-        );
-        if ($is_not_authenticated) {
-            header('HTTP/1.1 401 Authorization Required');
-            header('WWW-Authenticate: Basic realm="Access denied"');
-
-            exit;
+        if (config('baseauth.users')->contains([$request->getUser(), $request->getPassword()])) {
+            return $next($request);
         }
 
-        return $next($request);
+        return response('', 401, ['WWW-Authenticate' => 'Basic']);
     }
 }

@@ -10,4 +10,4 @@ php artisan test --filter SalesCommissionsTest
 
 ## Folder Postman
 
-- Service `/salesCommission`
+- Service `salaries/salesCommission`
